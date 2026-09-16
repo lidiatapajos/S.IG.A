@@ -24,4 +24,37 @@ class AppTextStyles {
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );
+
+  static const siga = TextStyle(
+    color: AppColors.blue,
+    fontSize: 48,
+    fontWeight: FontWeight.w900,
+    letterSpacing: 2,
+  );
+
+  static const subtitleBlue = TextStyle(
+    color: AppColors.blue,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    height: 1.1,
+  );
+
+  static const belem = TextStyle(
+    color: AppColors.blue,
+    fontSize: 46,
+    fontWeight: FontWeight.w900,
+  );
+
+  static const slogan = TextStyle(
+    color: AppColors.blue,
+    fontSize: 25,
+    fontWeight: FontWeight.w600,
+    height: 1.15,
+  );
+
+  static const buttonBlue = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: AppColors.blue,
+  );
 }
