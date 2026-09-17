@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../main_screen/main_screen.dart';
 
 void main() => runApp(const Waste());
 
@@ -91,7 +92,12 @@ class _ComoSepararScreenState extends State<ComoSepararScreen> {
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Volta para a tela anterior (ex: pagina_principal)
-            Navigator.pop(context);
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MainScreen(),
+              ),
+            );
           },
         ),
         title: const Text(
