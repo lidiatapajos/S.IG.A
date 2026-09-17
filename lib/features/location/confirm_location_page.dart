@@ -5,6 +5,8 @@ import 'package:latlong2/latlong.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
 
+import '../disposal_points/disposal_points_page.dart';
+
 class ConfirmLocationPage extends StatefulWidget {
   final String? bairro;
   final double? latitude;
@@ -92,7 +94,7 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                           child: const Icon(
                             Icons.location_on,
                             size: 45,
-                            color: AppColors.primary,
+                            color: AppColors.blue,
                           ),
                         ),
                       ],
@@ -121,7 +123,7 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                       children: [
                         const Icon(
                           Icons.location_on,
-                          color: AppColors.secondary,
+                          color: AppColors.green,
                         ),
                         const SizedBox(width: 10),
                         Expanded(
@@ -187,14 +189,11 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                     height: 52,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        Navigator.pop(
-                          context,
-                          {
-                            'bairro': widget.bairro,
-                            'latitude': localizacao.latitude,
-                            'longitude': localizacao.longitude,
-                          },
-                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DisposalPointsPage(),
+                            ));
                       },
                       icon: const Icon(
                         Icons.check_circle_outline,
@@ -203,7 +202,7 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                         'Confirmar localização',
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
+                        backgroundColor: AppColors.blue,
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
