@@ -4,8 +4,7 @@ import 'package:latlong2/latlong.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/app_text_styles.dart';
-
-import '../disposal_points/disposal_points_page.dart';
+import '../main_screen/main_screen.dart';
 
 class ConfirmLocationPage extends StatefulWidget {
   final String? bairro;
@@ -187,25 +186,26 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                   SizedBox(
                     width: double.infinity,
                     height: 52,
-                    child: ElevatedButton.icon(
+                    child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const DisposalPointsPage(),
-                            ));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const MainScreen(),
+                          ),
+                        );
                       },
-                      icon: const Icon(
-                        Icons.check_circle_outline,
-                      ),
-                      label: const Text(
-                        'Confirmar localização',
-                      ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.blue,
+                        backgroundColor: const Color(0xFF1565C0),
                         foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                        elevation: 0,
+                        shape: const StadiumBorder(),
+                      ),
+                      child: const Text(
+                        'CONFIRMAR LOCALIZAÇÃO',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
