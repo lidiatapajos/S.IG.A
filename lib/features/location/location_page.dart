@@ -182,7 +182,7 @@ class _LocationPageState extends State<LocationPage> {
                   hintText: 'Buscar bairro',
                   prefixIcon: Icon(
                     Icons.search,
-                    color: AppColors.primary,
+                    color: AppColors.blue,
                   ),
                 ),
               ),
@@ -205,7 +205,7 @@ class _LocationPageState extends State<LocationPage> {
                     children: [
                       const Icon(
                         Icons.my_location,
-                        color: AppColors.primary,
+                        color: AppColors.blue,
                       ),
                       const SizedBox(width: 12),
                       Expanded(
@@ -214,7 +214,7 @@ class _LocationPageState extends State<LocationPage> {
                               ? 'Buscando sua localização...'
                               : 'Usar minha localização atual',
                           style: const TextStyle(
-                            color: AppColors.primary,
+                            color: AppColors.blue,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -230,7 +230,7 @@ class _LocationPageState extends State<LocationPage> {
                       else
                         const Icon(
                           Icons.chevron_right,
-                          color: AppColors.primary,
+                          color: AppColors.blue,
                         ),
                     ],
                   ),
@@ -244,7 +244,7 @@ class _LocationPageState extends State<LocationPage> {
                 child: Text(
                   'BAIRROS',
                   style: TextStyle(
-                    color: AppColors.primary,
+                    color: AppColors.blue,
                     fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
@@ -279,7 +279,7 @@ class _LocationPageState extends State<LocationPage> {
                           ),
                           leading: const Icon(
                             Icons.location_on_outlined,
-                            color: AppColors.secondary,
+                            color: AppColors.green,
                           ),
                           title: Text(
                             bairro,
