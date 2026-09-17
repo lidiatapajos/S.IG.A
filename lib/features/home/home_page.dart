@@ -135,14 +135,17 @@ class HomePage extends StatelessWidget {
                     width: double.infinity,
                     child: OutlinedButton.icon(
                       onPressed: () => _searchAddress(context),
-                      icon: const Icon(Icons.location_on, size: 24),
+                      icon: const Icon(
+                        Icons.location_on,
+                        size: 24,
+                      ),
                       label: const Text(
                         'BUSCAR UM\nENDEREÇO',
                         textAlign: TextAlign.center,
-                        style: AppTextStyles.button,
                       ),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: AppColors.blue,
+                        backgroundColor: Colors.white,
                         side: const BorderSide(
                           color: AppColors.blue,
                           width: 2,
