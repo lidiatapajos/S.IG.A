@@ -57,6 +57,18 @@ export function openDatabase(filename = ':memory:') {
       PRAGMA user_version = 1;
       COMMIT;
     `);
+
+        CREATE TABLE denuncias (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        protocolo TEXT UNIQUE NOT NULL,
+        categoria TEXT NOT NULL,
+        descricao TEXT,
+        foto_url TEXT NOT NULL,
+        latitude REAL NOT NULL,
+        longitude REAL NOT NULL,
+        status TEXT DEFAULT 'pendente',
+        criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
   }
   return db;
 }
