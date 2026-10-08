@@ -56,7 +56,7 @@ export function openDatabase(filename = ':memory:') {
       );
       PRAGMA user_version = 1;
       COMMIT;
-    `);
+
 
         CREATE TABLE denuncias (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,7 +68,7 @@ export function openDatabase(filename = ':memory:') {
         longitude REAL NOT NULL,
         status TEXT DEFAULT 'pendente',
         criado_em DATETIME DEFAULT CURRENT_TIMESTAMP
-        );
+        );`);
   }
   return db;
 }
