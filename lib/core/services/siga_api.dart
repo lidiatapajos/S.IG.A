@@ -7,6 +7,7 @@ import 'package:latlong2/latlong.dart';
 
 import '../config/api_config.dart';
 import '../models/siga_models.dart';
+import 'demo_data.dart';
 
 class ApiException implements Exception {
   final String message;
@@ -24,7 +25,7 @@ class SigaApi {
   SigaApi({
     http.Client? client,
     String? baseUrl,
-    this.timeout = const Duration(seconds: 12),
+    this.timeout = const Duration(seconds: 30),
   })  : _client = client ?? http.Client(),
         _base = Uri.parse(
           '${(baseUrl ?? defaultBaseUrl).replaceAll(RegExp(r'/+$'), '')}/',
@@ -46,6 +47,7 @@ class SigaApi {
     String path, [
     Map<String, String>? query,
   ]) async {
+    if (ApiConfig.demoMode) return _demoList(path, query);
     if (_base.host == 'localhost' &&
         kIsWeb &&
         Uri.base.host != 'localhost' &&
@@ -85,6 +87,88 @@ class SigaApi {
         'O servidor retornou dados inválidos. Tente novamente.',
       );
     }
+  }
+
+  List<Map<String, dynamic>> _demoList(String path, Map<String, String>? query) {
+    if (path == 'bairros') return DemoData.bairrosJson;
+    if (path == 'categorias') return DemoData.categorias;
+    if (path == 'residuos') return DemoData.residuos;
+    if (path == 'dicas') return DemoData.dicas;
+    if (path == 'ecopontos') {
+      final search = (query?['busca'] ?? '').toLowerCase();
+      final category = query?['categoria'];
+      final lat = double.tryParse(query?['latitude'] ?? '');
+      final lon = double.tryParse(query?['longitude'] ?? '');
+      final candidates = DemoData.ecopontos.where((p) =>
+        (category == null || category == p['categoria']) &&
+        ('${p['nome']} ${p['endereco']}'.toLowerCase().contains(search))).map((p) {
+          final row = Map<String, dynamic>.from(p);
+          if (lat != null && lon != null) {
+            row['distancia_km'] = const Distance().as(LengthUnit.Kilometer,
+              LatLng(lat, lon), LatLng(p['latitude'] as double, p['longitude'] as double));
+          }
+          return row;
+        }).toList();
+      candidates.sort((a, b) => ((a['distancia_km'] as double?) ?? 0).compareTo((b['distancia_km'] as double?) ?? 0));
+      return candidates;
+    }
+    return [];
+  }
+
+  Future<Map<String, dynamic>> enviarDenuncia({
+    required String categoria,
+    required String descricao,
+    required double latitude,
+    required double longitude,
+    required String fotoBase64,
+  }) async {
+    if (ApiConfig.demoMode) {
+      throw const ApiException('O envio é desativado no modo demonstração. Execute com a API real para registrar uma ocorrência.');
+    }
+    try {
+      final response = await _client.post(
+        _base.resolve('denuncias'),
+        headers: {'Content-Type': 'application/json', 'Accept':'application/json'},
+        body: jsonEncode({
+          'categoria':categoria, 'descricao':descricao,
+          'latitude':latitude, 'longitude':longitude, 'foto_base64':fotoBase64,
+        }),
+      ).timeout(const Duration(seconds: 45));
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
+      if (response.statusCode != 201) {
+        final error = json is Map ? json['error'] : null;
+        final message = error is Map ? error['message']?.toString() : null;
+        throw ApiException(message ?? 'Não foi possível enviar a denúncia (${response.statusCode}).');
+      }
+      if (json is! Map || json['data'] is! Map) throw const FormatException();
+      return Map<String, dynamic>.from(json['data'] as Map);
+    } on TimeoutException {
+      throw const ApiException('O envio demorou muito. Verifique a conexão antes de tentar novamente.');
+    } on http.ClientException {
+      throw const ApiException('Sem conexão com a API. Tente novamente.');
+    } on FormatException {
+      throw const ApiException('Resposta inválida da API.');
+    }
+  }
+
+  Future<Map<String, dynamic>> consultarDenuncia(String protocolo) async {
+    if (ApiConfig.demoMode) throw const ApiException('A consulta de protocolos requer a API real.');
+    try {
+      final response = await _client.get(
+        _base.resolve('denuncias/protocolo/${Uri.encodeComponent(protocolo)}'),
+        headers: {'Accept':'application/json'},
+      ).timeout(timeout);
+      final json = jsonDecode(utf8.decode(response.bodyBytes));
+      if (response.statusCode != 200) {
+        final error = json is Map ? json['error'] : null;
+        final message = error is Map ? error['message']?.toString() : null;
+        throw ApiException(message ?? 'Protocolo não encontrado (${response.statusCode}).');
+      }
+      if (json is! Map || json['data'] is! Map) throw const FormatException();
+      return Map<String, dynamic>.from(json['data'] as Map);
+    } on TimeoutException { throw const ApiException('Consulta demorou demais. Tente novamente.'); }
+      on http.ClientException { throw const ApiException('Erro de conexão. Verifique sua internet.'); }
+      on FormatException { throw const ApiException('Resposta inválida da API.'); }
   }
 
   Future<List<Bairro>> bairros() async =>
