@@ -4,6 +4,34 @@ Este projeto reúne o aplicativo Flutter existente e uma primeira versão de bac
 
 Os quatro ecopontos iniciais são exemplos vindos do protótipo, com endereços e horários **não verificados**. Eles são identificados como demonstração na API e no app. Não representam um serviço oficial da Prefeitura de Belém.
 
+## Tecnologias Utilizadas
+
+<div align="left">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" width="45" height="45" alt="Flutter"/>
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg" width="45" height="45" alt="Dart"/>
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" width="45" height="45" alt="Git"/>
+  &nbsp;
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" width="45" height="45" alt="GitHub"/>
+</div>
+
+### Bibliotecas e Dependências
+
+![flutter_map](https://img.shields.io/badge/flutter__map-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![geolocator](https://img.shields.io/badge/geolocator-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![latlong2](https://img.shields.io/badge/latlong2-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+
+### Descrição das Tecnologias
+
+- **Flutter:** desenvolvimento da interface e estrutura do aplicativo.
+- **Dart:** linguagem de programação utilizada.
+- **flutter_map:** visualização de mapas interativos.
+- **geolocator:** acesso aos recursos de localização geográfica.
+- **latlong2:** manipulação de coordenadas geográficas.
+- **Git e GitHub:** versionamento e gerenciamento do código-fonte.
+
+
 ## 1. Iniciar o backend
 
 Pré-requisitos: **Node.js 24.x**, npm e, para abrir o aplicativo, Flutter. O banco SQLite já está disponível no Node.js usado pelo projeto; não precisa instalar MySQL ou PostgreSQL nesta etapa.
