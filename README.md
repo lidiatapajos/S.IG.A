@@ -1,4 +1,12 @@
-# SIGA — Sistema Integrado de Gestão e acompanhamento + API
+ 
+<div align="center">
+  <img src="./assets/logo/logo_sem_fundo.png" alt="Logo SIGA" width="100" align="left">
+
+  <h1>SIGA — Sistema Integrado de Gestão e Acompanhamento + API</h1>
+</div>
+
+<br clear="all">
+
 
 Este projeto reúne o aplicativo Flutter existente e uma primeira versão de backend em Node.js + Express, com banco SQLite. A API atende as telas de bairros, mapa, pontos de descarte e guia de resíduos.
 
