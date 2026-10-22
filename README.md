@@ -1,8 +1,8 @@
 
 <table>
   <tr>
-    <td width="65">
-      <img src="./assets/logo/logo_sem_fundo.png" alt="Logo SIGA" width="55">
+    <td width="100">
+      <img src="./assets/logo/logo_sem_fundo.png" alt="Logo SIGA" width="100">
     </td>
     <td>
       <h1>SIGA + API</h1>
