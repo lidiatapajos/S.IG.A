@@ -4,14 +4,6 @@ Este projeto reúne o aplicativo Flutter existente e uma primeira versão de bac
 
 Os quatro ecopontos iniciais são exemplos vindos do protótipo, com endereços e horários **não verificados**. Eles são identificados como demonstração na API e no app. Não representam um serviço oficial da Prefeitura de Belém.
 
-## Informações Acadêmicas
-
-- **Instituição:** Universidade da Amazônia (UNAMA)
-- **Curso:** Análise e Desenvolvimento de Sistemas
-- **Disciplina:** Arquitetura de Software e Computação em Nuvem
-- **Professor:** Rodrigo Medeiros Costa
-- **Atividade:** Revisão Arquitetural de um Projeto
-
 ## Equipe de Desenvolvimento
 
 - Emily Nivea Ribeiro da Silva - 04193064
