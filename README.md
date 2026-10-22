@@ -1,4 +1,4 @@
-# SIGA — aplicativo de resíduos + API
+# SIGA — Sistema Integrado de Gestão e acompanhamento + API
 
 Este projeto reúne o aplicativo Flutter existente e uma primeira versão de backend em Node.js + Express, com banco SQLite. A API atende as telas de bairros, mapa, pontos de descarte e guia de resíduos.
 
@@ -10,6 +10,7 @@ Os quatro ecopontos iniciais são exemplos vindos do protótipo, com endereços 
 - Lidia Enedina Monteiro Tapajós - 04184708
 - Milena Kamily Aragão de Souza - 04180528
 - Júlia Caroline Barbosa - 04171539
+- Yasmin Trindade
 
 ## Tecnologias Utilizadas
 
