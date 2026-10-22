@@ -24,7 +24,7 @@ Os quatro ecopontos iniciais são exemplos vindos do protótipo, com endereços 
 - Lidia Enedina Monteiro Tapajós - 04184708
 - Milena Kamily Aragão de Souza - 04180528
 - Júlia Caroline Barbosa - 04171539
-- Yasmin Trindade
+- Yasmin Trindade Souzaq  - 04181465
 
 ## Tecnologias Utilizadas
 
