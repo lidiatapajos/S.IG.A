@@ -2,7 +2,7 @@
 <div align="center">
   <img src="./assets/logo/logo_sem_fundo.png" alt="Logo SIGA" width="100" align="left">
 
-  <h1>SIGA — Sistema Integrado de Gestão e Acompanhamento + API</h1>
+  <h1>SIGA + API</h1>
 </div>
 
 <br clear="all">
