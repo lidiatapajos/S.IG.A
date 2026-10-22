@@ -5,7 +5,7 @@
       <img src="./assets/logo/logo_sem_fundo.png" alt="Logo SIGA" width="100">
     </td>
     <td>
-      <h1>SIGA + API</h1>
+      <h1>S.I.G.A.</h1>
       <p>Sistema Integrado de Gestão e Acompanhamento</p>
     </td>
   </tr>
@@ -13,36 +13,98 @@
 
 <br clear="all">
 
+criado como proposta de utilidade cidadã para Belém (PA). **Não possui afiliação oficial com a Prefeitura.**
 
-Este projeto reúne o aplicativo Flutter existente e uma primeira versão de backend em Node.js + Express, com banco SQLite. A API atende as telas de bairros, mapa, pontos de descarte e guia de resíduos.
+**Comece por [`GUIA_HACKATHON.md`](GUIA_HACKATHON.md).** Inclui rastreamento com aparelho real, painel, configuração e assinatura Android. Consulte [`VALIDACAO.md`](VALIDACAO.md) para os testes executados.
 
-Os quatro ecopontos iniciais são exemplos vindos do protótipo, com endereços e horários **não verificados**. Eles são identificados como demonstração na API e no app. Não representam um serviço oficial da Prefeitura de Belém.
+### Funcionalidades
+
+- Tela inicial com busca de localização por GPS ou seleção manual
+- Lista de bairros fornecida pela API
+- Confirmação de posição no OpenStreetMap
+- Painel inicial com mapa e atalhos
+- Ecopontos com pesquisa, categorias e distâncias
+- Orientações e dicas de separação de resíduos
+- Denúncia anônima com fotografia, marcação de ponto, envio e protocolo
+- Consulta de status por protocolo, sem cadastro
+- Modo demonstrativo explícito para apresentação sem API
+- Rastreamento de aparelho autorizado simulando um caminhão; mapa atualizado a cada 5 segundos
+- Transmissor GPS `/rastreador` e painel de sessões e denúncias `/admin`
+
+### Limitações
+
+Ecopontos demonstrativos são fictícios. Rastreamento usa GPS real, voluntário, com navegador aberto e HTTPS. Há rate limit e painel básico; operação pública ainda exige dados verificados, persistência, backups, retenção e governança de atendimento. Não há rastreamento em segundo plano nem integração oficial municipal.
 
 ## Equipe de Desenvolvimento
 
-- Emily Nivea Ribeiro da Silva - 04193064
-- Lidia Enedina Monteiro Tapajós - 04184708
-- Milena Kamily Aragão de Souza - 04180528
-- Júlia Caroline Barbosa - 04171539
-- Yasmim Trindade Souza  - 04181465
+- Lidia Enedina Monteiro Tapajós
+- Milena Kamily Aragão de Souza
+- Emily Nivea Ribeiro da Silva
+- Júlia Caroline Barbosa
+- Yasmim Trindade Souza
+
+
 
 ## Tecnologias Utilizadas
 
-<div align="left">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" width="45" height="45" alt="Flutter"/>
-  &nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg" width="45" height="45" alt="Dart"/>
-  &nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" width="45" height="45" alt="Git"/>
-  &nbsp;
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" width="45" height="45" alt="GitHub"/>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg" width="45"/><br>
+      <sub>Flutter</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dart/dart-original.svg" width="45"/><br>
+      <sub>Dart</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" width="45"/><br>
+      <sub>Git</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/github/FFFFFF" width="45"/><br>
+      <sub>GitHub</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/openstreetmap/7EBC6F" width="45"/><br>
+      <sub>OpenStreetMap</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" width="45"/><br>
+      <sub>Node.js</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/express/FFFFFF" width="45"/><br>
+      <sub>Express</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg" width="45"/><br>
+      <sub>SQLite</sub>
+    </td>
+    <td align="center">
+      <img src="https://cdn.simpleicons.org/cloudinary/3448C5" width="45"/><br>
+      <sub>Cloudinary</sub>
+    </td>
+  </tr>
+</table>
+
+
 
 ### Bibliotecas e Dependências
 
 ![flutter_map](https://img.shields.io/badge/flutter__map-02569B?style=for-the-badge&logo=flutter&logoColor=white)
-![geolocator](https://img.shields.io/badge/geolocator-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![OpenStreetMap](https://img.shields.io/badge/OpenStreetMap-7EBC6F?style=for-the-badge&logo=openstreetmap&logoColor=white)
+![Geolocator](https://img.shields.io/badge/Geolocator-0175C2?style=for-the-badge&logo=dart&logoColor=white)
 ![latlong2](https://img.shields.io/badge/latlong2-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![HTTP](https://img.shields.io/badge/HTTP-00599C?style=for-the-badge&logo=dart&logoColor=white)
+![Image Picker](https://img.shields.io/badge/Image_Picker-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-555555?style=for-the-badge&logo=express&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary_Opcional-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-24292F?style=for-the-badge&logo=github&logoColor=white)
+
 
 ### Descrição das Tecnologias
 
