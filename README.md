@@ -1,9 +1,16 @@
-<center>
-<div align="center">
-  <img src="./assets/logo/logo_sem_fundo.png" alt="Logo SIGA" width="100" align="left">
-  <h1>SIGA + API</h1>
-</div>
-</center>
+
+<table>
+  <tr>
+    <td width="65">
+      <img src="./assets/logo/logo_sem_fundo.png" alt="Logo SIGA" width="55">
+    </td>
+    <td>
+      <h1>SIGA + API</h1>
+      <p>Sistema Integrado de Gestão e Acompanhamento</p>
+    </td>
+  </tr>
+</table>
+
 <br clear="all">
 
 
