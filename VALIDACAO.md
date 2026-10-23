@@ -21,6 +21,34 @@
 
 ## Antes de apresentar
 
-Siga `GUIA_HACKATHON.md`. Publique a API com as variáveis novas, confirme persistência após reiniciar, execute as verificações Flutter e teste com celular real autorizado. O workflow em `.github/workflows/checks.yml` faz testes de backend/navegador, análise/testes Flutter e gera APK debug ao ser executado no GitHub; não foi executado nesta entrega. Ele usa Flutter stable: após obter um build verde, preserve o `pubspec.lock` produzido e fixe a versão do SDK usada para repetir o build.
+Siga `GUIA_TECNICO.md`. Publique a API com as variáveis novas, confirme persistência após reiniciar, execute as verificações Flutter e teste com celular real autorizado. O workflow em `.github/workflows/checks.yml` faz testes de backend/navegador, análise/testes Flutter e gera APK debug ao ser executado no GitHub; não foi executado nesta entrega. Ele usa Flutter stable: após obter um build verde, preserve o `pubspec.lock` produzido e fixe a versão do SDK usada para repetir o build.
 
 Os dados de ecopontos continuam explicitamente demonstrativos. O mapa do caminhão recebe localização real quando o aparelho opta por compartilhar; não representa frota municipal oficial. A atualização é por polling de 5 segundos, com envelhecimento do sinal. Não há rastreamento oculto ou em segundo plano.
+
+## Validação da Versão Multiplataforma
+
+O projeto passou a contar com três interfaces integradas: aplicativo do cidadão, aplicativo do motorista e painel administrativo web.
+
+Esta seção destina-se ao registro das verificações realizadas após a implementação do aplicativo independente SIGA Rastreador.
+
+### Verificações da Integração
+
+- [ ] Confirmar a autorização de uma sessão de rastreamento pelo painel administrativo.
+- [ ] Confirmar o funcionamento do aplicativo SIGA Rastreador em dispositivo Android.
+- [ ] Verificar o envio das coordenadas à API.
+- [ ] Verificar a atualização da localização no mapa do cidadão.
+- [ ] Testar a revogação da sessão de rastreamento.
+- [ ] Verificar o bloqueio de operações administrativas sem credencial válida.
+- [ ] Testar a consulta e a atualização do andamento de denúncias no painel administrativo.
+
+### Evidências
+
+As evidências podem incluir capturas de tela, gravações, registros de execução e resultados de testes realizados em dispositivos físicos.
+
+Os testes devem ser marcados como concluídos somente após sua execução e confirmação.
+
+### Observações
+
+A disponibilidade dos serviços hospedados não substitui a validação funcional das interfaces.
+
+A demonstração acadêmica não concede aos avaliadores acesso administrativo ao ambiente operacional.
