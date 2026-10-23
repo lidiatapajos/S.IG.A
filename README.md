@@ -26,8 +26,10 @@
 - Denúncia anônima com fotografia, marcação de ponto, envio e protocolo
 - Consulta de status por protocolo, sem cadastro
 - Modo demonstrativo explícito para apresentação sem API
-- Rastreamento de aparelho autorizado simulando um caminhão; mapa atualizado a cada 5 segundos
-- Transmissor GPS `/rastreador` e painel de sessões e denúncias `/admin`
+- Acompanhamento da localização de veículos autorizados no mapa do cidadão
+- Aplicativo SIGA Rastreador para transmissão de localização por motoristas autorizados
+- Painel administrativo web para gerenciamento de denúncias, ecopontos e sessões de rastreamento
+- Integração das interfaces por meio de uma API Node.js
 
 ### Limitações
 
