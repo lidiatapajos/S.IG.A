@@ -1,7 +1,7 @@
 # S.I.G.A — Entrega e execução no VS Code
 
 Para informações técnicas sobre o backend, autenticação e rastreamento,
-consulte o GUIA_HACKATHON.md.
+consulte o GUIA_TECNICA.md.
 
 O projeto também inclui o aplicativo independente SIGA Rastreador,
 localizado na pasta siga_rastreador/.
