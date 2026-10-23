@@ -13,8 +13,6 @@
 
 <br clear="all">
 
-criado como proposta de utilidade cidadã para Belém (PA). **Não possui afiliação oficial com a Prefeitura.**
-
 **Comece por [`GUIA_HACKATHON.md`](GUIA_HACKATHON.md).** Inclui rastreamento com aparelho real, painel, configuração e assinatura Android. Consulte [`VALIDACAO.md`](VALIDACAO.md) para os testes executados.
 
 ### Funcionalidades
@@ -34,6 +32,34 @@ criado como proposta de utilidade cidadã para Belém (PA). **Não possui afilia
 ### Limitações
 
 Ecopontos demonstrativos são fictícios. Rastreamento usa GPS real, voluntário, com navegador aberto e HTTPS. Há rate limit e painel básico; operação pública ainda exige dados verificados, persistência, backups, retenção e governança de atendimento. Não há rastreamento em segundo plano nem integração oficial municipal.
+
+## Interfaces do SIGA e Política de Acesso
+
+O SIGA é uma solução tecnológica composta por três interfaces integradas, desenvolvidas para atender diferentes perfis de usuários.
+
+| Interface | Plataforma | Disponibilidade |
+|---|---|---|
+| SIGA Cidadão | Aplicativo Mobile (Flutter) | Demonstração pública |
+| SIGA Rastreador | Aplicativo Mobile (Flutter) | Acesso operacional restrito |
+| SIGA Administrativo | Painel Web | Acesso administrativo restrito |
+
+### Demonstração Pública
+
+Para fins de apresentação acadêmica, o aplicativo SIGA Cidadão constitui a principal interface disponibilizada aos avaliadores.
+
+O aplicativo do motorista e o painel administrativo integram a arquitetura do projeto, mas seus acessos operacionais são restritos por motivos de segurança, privacidade e controle das informações.
+
+As funcionalidades dessas interfaces são apresentadas por meio de demonstrações gravadas e da documentação técnica, permitindo compreender o funcionamento integrado do sistema sem disponibilizar credenciais privilegiadas.
+
+### Segurança e Controle de Acesso
+
+O sistema utiliza mecanismos de autorização para proteger operações administrativas e controlar o compartilhamento de localização dos veículos.
+
+O acesso ao código-fonte não implica autorização para utilizar as funcionalidades administrativas do ambiente hospedado.
+
+Credenciais administrativas, chaves de rastreamento e demais informações sensíveis não são disponibilizadas publicamente.
+
+**Nota aos avaliadores:** o SIGA é um protótipo acadêmico independente, sem vínculo operacional oficial com a Prefeitura de Belém. A demonstração utiliza recursos e dados destinados à validação da solução tecnológica.
 
 ## Equipe de Desenvolvimento
 
