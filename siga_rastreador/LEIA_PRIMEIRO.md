@@ -1,23 +1,13 @@
-# SIGA Rastreador — Android (primeira versão)
+# SIGA Rastreador — Aplicativo Android
 
-Este pacote adiciona **um SEGUNDO aplicativo Flutter** (`siga_rastreador/`) ao repositório SIGA, sem mudar o aplicativo do cidadão nem o backend atual.
+Este diretório contém o aplicativo Flutter independente
+utilizado pelos motoristas autorizados do SIGA.
 
-## Como juntar ao repositório
+O aplicativo integra-se ao backend do projeto para transmitir
+a localização dos veículos, mediante autorização e consentimento.
 
-Copie as pastas `siga_rastreador/` e `.github/workflows/build-rastreador.yml` para a raiz do repositório **S.IG.A**. Faça commit.
-
-No GitHub, abra **Actions > Gerar APK SIGA Rastreador > Run workflow** e, quando terminar, baixe o artifact `SIGA-Rastreador-Android-debug`. Instale o APK de teste nos aparelhos da equipe. APK debug é apenas para testes; para distribuir oficialmente é necessário criar e proteger assinatura release.
-
-### No VS Code
-
-```bash
-cd siga_rastreador
-flutter create --platforms=android --org br.com.siga .
-flutter pub get
-flutter run
-```
-
-> Flutter create completa arquivos de plataforma que o ZIP original não continha, como o gradle wrapper. Rode sem `--overwrite` para preservar as configurações customizadas.
+O acesso operacional é restrito. As credenciais administrativas
+e as chaves de rastreamento não são disponibilizadas publicamente.
 
 ### Como testar
 
