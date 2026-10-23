@@ -33,13 +33,13 @@ Esta seção destina-se ao registro das verificações realizadas após a implem
 
 ### Verificações da Integração
 
-- [ ] Confirmar a autorização de uma sessão de rastreamento pelo painel administrativo.
-- [ ] Confirmar o funcionamento do aplicativo SIGA Rastreador em dispositivo Android.
-- [ ] Verificar o envio das coordenadas à API.
-- [ ] Verificar a atualização da localização no mapa do cidadão.
-- [ ] Testar a revogação da sessão de rastreamento.
-- [ ] Verificar o bloqueio de operações administrativas sem credencial válida.
-- [ ] Testar a consulta e a atualização do andamento de denúncias no painel administrativo.
+- [X] Confirmar a autorização de uma sessão de rastreamento pelo painel administrativo.
+- [X] Confirmar o funcionamento do aplicativo SIGA Rastreador em dispositivo Android.
+- [X] Verificar o envio das coordenadas à API.
+- [X] Verificar a atualização da localização no mapa do cidadão.
+- [X] Testar a revogação da sessão de rastreamento.
+- [X] Verificar o bloqueio de operações administrativas sem credencial válida.
+- [X] Testar a consulta e a atualização do andamento de denúncias no painel administrativo.
 
 ### Evidências
 
