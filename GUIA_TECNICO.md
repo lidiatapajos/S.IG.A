@@ -3,9 +3,12 @@
 ## Alterações
 
 - Atalho **Onde está o caminhão?** no Flutter: mapa consulta a API a cada 5 segundos.
-- O projeto disponibiliza duas formas de transmissão de localização:
-  o transmissor web `/rastreador` e o aplicativo Flutter independente
-  `siga_rastreador/`. Cada implementação possui requisitos e limitações próprios.
+- O rastreamento de veículos é realizado pelo aplicativo Flutter independente
+  `siga_rastreador/`, conectado à API Node.js.
+- O painel `/admin` autoriza e revoga sessões, consulta denúncias,
+  exibe fotografias e atualiza o andamento das ocorrências.
+- A transmissão de localização é autorizada individualmente
+  para cada aparelho.
 - **/admin** cria/revoga sessões, consulta denúncias, exibe fotos e altera o andamento.
 - Chaves individuais de 4 horas, armazenadas como hash. O token administrativo nunca vai ao rastreador nem ao Flutter.
 - Apenas a última posição: sem histórico de trajetos. Após 30 segundos, sinal desatualizado; após 120 segundos, oculto. Limpeza de coordenadas no servidor a cada 20 segundos e nas consultas. Encerrar/revogar apaga a sessão assim que o servidor recebe a requisição.
@@ -36,14 +39,6 @@ O fluxo de funcionamento é composto pelas seguintes etapas:
 4. As informações de localização são transmitidas à API.
 5. O aplicativo do cidadão consulta os dados disponibilizados pelo backend.
 6. O administrador pode encerrar ou revogar as sessões autorizadas.
-
-### Transmissor Web
-
-O projeto também contém uma implementação de rastreamento por navegador, acessível pela rota `/rastreador`.
-
-Essa implementação utiliza os recursos de geolocalização do navegador e possui limitações específicas, incluindo a necessidade de manter a página ativa durante a transmissão.
-
-As orientações relacionadas ao transmissor web não devem ser confundidas com o funcionamento do aplicativo Flutter independente.
 
 ### Painel Administrativo
 
@@ -98,7 +93,7 @@ Atualize a pasta `backend` no seu serviço. Instalação: `npm ci --omit=dev`. I
 Exemplo para seu endereço habitual:
 
 ```text
-CORS_ORIGINS=https://s-ig-a.onrender.com,http://localhost:8080
+CORS_ORIGINS=https://siga-05o2.onrender.com,http://localhost:8080
 ```
 
 Em produção, sem token e confirmação de persistência, o servidor recusa iniciar. A flag **não cria nem inspeciona disco**: configure um volume real. Se o plano não oferecer persistência, use uma hospedagem com volume ou planeje a migração do banco. Mantenha uma instância nesta versão SQLite. Preserve o banco antigo antes de trocar `DB_FILE` e teste um reinício/redeploy. Faça backups consistentes; copiar somente `.db` durante escrita pode perder dados no WAL.
@@ -107,13 +102,21 @@ Cloudinary é opcional. Sem as três credenciais, fotos ficam no SQLite privado.
 
 Esta entrega contém código. Não altera automaticamente seu serviço já hospedado.
 
-### 3. Teste do aplicativo Android
+## 3. Teste do aplicativo Android
 
-Para testar o SIGA Rastreador, consulte
-[siga_rastreador/LEIA_PRIMEIRO.md](siga_rastreador/LEIA_PRIMEIRO.md).
+O SIGA Rastreador está localizado em `siga_rastreador/`.
 
-O aplicativo utiliza uma implementação diferente do transmissor web,
-com requisitos próprios de permissões e execução no Android.
+Para instruções de instalação e operação, consulte [LEIA_PRIMEIRO.md](siga_rastreador/LEIA_PRIMEIRO.md).
+
+O aplicativo Android utiliza um serviço em primeiro plano para compartilhar a localização mediante consentimento do operador.
+
+Cada dispositivo deve utilizar sua própria chave de rastreamento, gerada pelo painel administrativo.
+
+O aplicativo envia as coordenadas à API por meio de `PUT /api/rastreamento/:id/posicao`.
+
+As posições recentes podem ser consultadas em `GET /api/rastreamento` e são utilizadas pelo aplicativo do cidadão.
+
+Os testes automatizados de backend simulam o envio de coordenadas por HTTP. Essa simulação não substitui testes de GPS, bloqueio de tela e execução em segundo plano em aparelhos Android reais.
 
 ## 4. Flutter e APK
 
@@ -126,7 +129,7 @@ flutter test
 flutter run -d chrome --web-port=8080 --dart-define=API_BASE_URL=https://SUA-API/api
 ```
 
-Para Android, selecione o celular com `flutter run` e a mesma definição de URL. O padrão continua `https://s-ig-a.onrender.com/api`, que precisa receber este backend atualizado.
+Para Android, selecione o celular com `flutter run` e a mesma definição de URL. O padrão continua `https://siga-05o2.onrender.com/api`, que precisa receber este backend atualizado.
 
 Não habilite `DEMO_MODE=true` para rastrear. Esse modo serve só para catálogo/navegação; envio, consulta de denúncia e rastreamento exigem API. Os mosaicos do mapa precisam de internet.
 
@@ -159,7 +162,7 @@ cd backend
 npm ci
 npm test
 npx playwright install chromium
-node scripts/browser-smoke.mjs
+npm run test:browser
 ```
 
 O teste do navegador usa GPS simulado e não substitui a seção 3. Teste no celular: câmera/galeria, permissões negadas, denúncia, protocolo, alteração de status no painel, deslocamento, perda de sinal, encerramento e reinício da API. A compilação e os testes Flutter precisam passar antes da apresentação.
