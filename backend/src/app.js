@@ -111,11 +111,10 @@ export function createApp({ db, adminToken = '', environment = 'development', co
   app.use('/api/denuncias', express.json({ limit: '3mb' }));
   app.use(express.json({ limit: '16kb' }));
   const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
-  app.get('/rastreador', (req, res) => res.sendFile('tracker.html', { root: publicDir }));
-  app.get('/admin', (req, res) => res.sendFile('admin.html', { root: publicDir }));
-  app.use('/assets', express.static(publicDir, { index: false, dotfiles: 'deny' }));
-  app.get('/', (req, res) => res.json({ status: 'ok', servico: 'SIGA API', health: '/api/health' }));
-
+  app.get('/admin', (req, res) =>
+  res.sendFile('admin.html', { root: publicDir }));
+  app.use('/assets', express.static(publicDir, {index: false,dotfiles: 'deny'}));
+  
   function requireAdmin(req, res, next) {
     if (!adminToken) return next(new ApiError(503, 'As alterações administrativas não estão configuradas.'));
     const expected = createHash('sha256').update(`Bearer ${adminToken}`).digest();
