@@ -33,9 +33,14 @@
 
 ### Limitações
 
-Os ecopontos demonstrativos são fictícios e não representam cadastros oficiais. O rastreamento utiliza GPS mediante autorização do operador. O projeto possui um transmissor web, que depende das condições de execução do navegador, e um aplicativo Android independente, desenvolvido para transmissão de localização por serviço em primeiro plano com notificação persistente. O funcionamento depende das permissões do dispositivo, da conectividade e das restrições do sistema operacional.
+Os ecopontos demonstrativos são fictícios e não representam cadastros oficiais. O rastreamento utiliza GPS mediante autorização do operador e é realizado pelo aplicativo independente SIGA Rastreador, desenvolvido em Flutter para Android.
 
-A operação pública ainda exige validação dos dados, persistência confiável, backups, políticas de retenção e governança. O SIGA não possui integração oficial com os serviços municipais de coleta.
+O aplicativo utiliza um serviço de localização em primeiro plano, com notificação persistente, que pode continuar funcionando com a tela bloqueada, conforme as permissões concedidas e as restrições do sistema operacional.
+
+A localização é transmitida à API e disponibilizada ao aplicativo do cidadão enquanto houver uma posição recente. Não há histórico de trajetos nem integração oficial com a frota municipal.
+
+A operação pública ainda exige validação dos dados, armazenamento persistente, backups, políticas de retenção e governança.
+
 ## Interfaces do SIGA e Política de Acesso
 
 O SIGA é uma solução tecnológica composta por três interfaces integradas, desenvolvidas para atender diferentes perfis de usuários.
@@ -208,7 +213,8 @@ No FlutLab, o servidor na sua máquina não é acessível pelo `localhost` do am
 
 No modo de teste do passo 2, o SQLite está num disco temporário: alterações feitas em pontos podem desaparecer após um reinício ou nova publicação, e o `seed` restaura os quatro exemplos. Para manter cadastros feitos por pessoas, use um disco persistente ou migre para um banco hospedado antes de colocar o app em produção. No Render, o disco persistente exige um plano pago. O endereço da API é público, mas `ADMIN_API_TOKEN` deve ficar somente nas variáveis do servidor.
 
-O Android permite HTTP local **apenas no build debug**. Para publicar builds release, configure uma API HTTPS. Esta entrega não inclui hospedagem.
+O Android permite HTTP local **apenas no build debug**. Para publicar builds release, configure uma API HTTPS. O projeto possui configuração para utilizar uma API hospedada,
+mas sua disponibilidade depende do serviço publicado no Render.
 
 ## 3. O que mudou no app
 
