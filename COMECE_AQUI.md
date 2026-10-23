@@ -4,6 +4,45 @@
 
 Este projeto é um **protótipo acadêmico**, não um aplicativo oficial da Prefeitura de Belém. A interface é azul e verde e inclui localização, mapas, ecopontos, separação de resíduos e denúncias anônimas.
 
+## Estrutura do Sistema
+
+O SIGA é composto por três interfaces conectadas a uma API central.
+
+### Aplicativo do Cidadão
+
+Aplicativo principal desenvolvido em Flutter, responsável pela interação com os usuários, consulta de informações ambientais, registro de denúncias e acompanhamento da localização dos caminhões.
+
+Seu código está localizado na raiz do projeto, com as telas e funcionalidades organizadas na pasta `lib/`.
+
+### Aplicativo do Motorista — SIGA Rastreador
+
+Aplicativo independente, desenvolvido em Flutter, destinado aos motoristas e operadores autorizados.
+
+Sua função é compartilhar a localização dos veículos com o backend, permitindo que as informações sejam consultadas pelo aplicativo do cidadão.
+
+O código-fonte está localizado em:
+
+`siga_rastreador/`
+
+O acesso operacional exige autorização específica. Não são fornecidas chaves de rastreamento públicas.
+
+### Painel Administrativo Web
+
+Interface web destinada à administração e ao gerenciamento das informações do sistema.
+
+Permite realizar operações administrativas, acompanhar denúncias e gerenciar sessões de rastreamento.
+
+O painel é disponibilizado pelo backend, por meio da rota:
+
+`/admin`
+
+Seu acesso é restrito a usuários autorizados.
+
+### Integração
+
+As três interfaces utilizam uma API central desenvolvida em Node.js, responsável pela comunicação, persistência dos dados e aplicação das regras de autorização.
+
+Para fins de avaliação acadêmica, o funcionamento das interfaces restritas é apresentado por demonstração gravada, sem compartilhamento das credenciais operacionais.
 ## Caminho rápido — usar no VS Code (Linux/Zorin, Windows ou macOS)
 
 1. Extraia o ZIP e abra a pasta **S.IG.A-main** no VS Code (a pasta que contém `pubspec.yaml`).
