@@ -1,6 +1,10 @@
 # S.I.G.A — Entrega e execução no VS Code
 
-**Para esta versão com rastreamento, siga primeiro [GUIA_HACKATHON.md](GUIA_HACKATHON.md).** Ele detalha as variáveis obrigatórias, o painel `/admin`, o transmissor `/rastreador` e a assinatura Android.
+Para informações técnicas sobre o backend, autenticação e rastreamento,
+consulte o GUIA_HACKATHON.md.
+
+O projeto também inclui o aplicativo independente SIGA Rastreador,
+localizado na pasta siga_rastreador/.
 
 Este projeto é um **protótipo acadêmico**, não um aplicativo oficial da Prefeitura de Belém. A interface é azul e verde e inclui localização, mapas, ecopontos, separação de resíduos e denúncias anônimas.
 
