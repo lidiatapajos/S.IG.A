@@ -10,6 +10,9 @@
         android:label="SIGA Rastreador"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.pravera.flutter_foreground_task.notification_icon"
+            android:resource="@drawable/ic_stat_siga" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

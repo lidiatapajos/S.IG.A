@@ -42,6 +42,10 @@ jobs:
         working-directory: siga_rastreador
         run: flutter pub get
 
+      - name: Gerar ícone do rastreador
+        working-directory: siga_rastreador
+        run: dart run flutter_launcher_icons
+
       - name: Gerar APK
         working-directory: siga_rastreador
         run: flutter build apk --debug
