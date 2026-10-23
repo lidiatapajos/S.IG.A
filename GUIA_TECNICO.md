@@ -3,7 +3,9 @@
 ## Alterações
 
 - Atalho **Onde está o caminhão?** no Flutter: mapa consulta a API a cada 5 segundos.
-- **/rastreador** usa o GPS real do navegador do aparelho autorizado. Não instala app adicional.
+- O projeto disponibiliza duas formas de transmissão de localização:
+  o transmissor web `/rastreador` e o aplicativo Flutter independente
+  `siga_rastreador/`. Cada implementação possui requisitos e limitações próprios.
 - **/admin** cria/revoga sessões, consulta denúncias, exibe fotos e altera o andamento.
 - Chaves individuais de 4 horas, armazenadas como hash. O token administrativo nunca vai ao rastreador nem ao Flutter.
 - Apenas a última posição: sem histórico de trajetos. Após 30 segundos, sinal desatualizado; após 120 segundos, oculto. Limpeza de coordenadas no servidor a cada 20 segundos e nas consultas. Encerrar/revogar apaga a sessão assim que o servidor recebe a requisição.
