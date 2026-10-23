@@ -16,11 +16,23 @@ jobs:
       - name: Baixar repositorio
         uses: actions/checkout@v4
 
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
       - name: Configurar Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
           cache: true
+
+      - name: Selecionar Java 17 no Flutter
+        run: |
+          flutter config --jdk-dir="$JAVA_HOME"
+          java -version
+          flutter doctor -v
 
       - name: Preparar projeto Android
         working-directory: siga_rastreador
@@ -39,3 +51,4 @@ jobs:
         with:
           name: SIGA-Rastreador-Android
           path: siga_rastreador/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: error
