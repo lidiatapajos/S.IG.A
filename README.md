@@ -13,7 +13,7 @@
 
 <br clear="all">
 
-**Comece por [`GUIA_HACKATHON.md`](GUIA_HACKATHON.md).** Inclui rastreamento com aparelho real, painel, configuração e assinatura Android. Consulte [`VALIDACAO.md`](VALIDACAO.md) para os testes executados.
+**Comece por [GUIA_TECNICO.md](GUIA_TECNICO.md).** Inclui rastreamento com aparelho real, painel, configuração e assinatura Android. Consulte [`VALIDACAO.md`](VALIDACAO.md) para os testes executados.
 
 ### Funcionalidades
 
@@ -33,8 +33,9 @@
 
 ### Limitações
 
-Ecopontos demonstrativos são fictícios. Rastreamento usa GPS real, voluntário, com navegador aberto e HTTPS. Há rate limit e painel básico; operação pública ainda exige dados verificados, persistência, backups, retenção e governança de atendimento. Não há rastreamento em segundo plano nem integração oficial municipal.
+Os ecopontos demonstrativos são fictícios e não representam cadastros oficiais. O rastreamento utiliza GPS mediante autorização do operador. O projeto possui um transmissor web, que depende das condições de execução do navegador, e um aplicativo Android independente, desenvolvido para transmissão de localização por serviço em primeiro plano com notificação persistente. O funcionamento depende das permissões do dispositivo, da conectividade e das restrições do sistema operacional.
 
+A operação pública ainda exige validação dos dados, persistência confiável, backups, políticas de retenção e governança. O SIGA não possui integração oficial com os serviços municipais de coleta.
 ## Interfaces do SIGA e Política de Acesso
 
 O SIGA é uma solução tecnológica composta por três interfaces integradas, desenvolvidas para atender diferentes perfis de usuários.
