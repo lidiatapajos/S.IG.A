@@ -1,7 +1,7 @@
 # S.I.G.A — Entrega e execução no VS Code
 
 Para informações técnicas sobre o backend, autenticação e rastreamento,
-consulte o GUIA_TECNICA.md.
+consulte [GUIA_TECNICO.md](GUIA_TECNICO.md).
 
 O projeto também inclui o aplicativo independente SIGA Rastreador,
 localizado na pasta siga_rastreador/.
@@ -56,7 +56,7 @@ Para fins de avaliação acadêmica, o funcionamento das interfaces restritas é
 5. Se a API do Render não responder ou o navegador bloquear CORS, use a apresentação: `flutter run -d chrome --web-port=8080 --dart-define=DEMO_MODE=true`.
 6. Também pode usar **Executar > Iniciar depuração (F5)** com as configurações em `.vscode/launch.json`.
 
-**Importante:** o modo de demonstração mostra bairros e ecopontos **fictícios**, devidamente identificados; não envia denúncias de verdade. O modo normal usa a API `https://s-ig-a.onrender.com/api`.
+**Importante:** o modo de demonstração mostra bairros e ecopontos **fictícios**, devidamente identificados; não envia denúncias de verdade. O modo normal do aplicativo utiliza a API:'https://siga-05o2.onrender.com/api'
 
 ## API hospedada no Render
 
@@ -97,15 +97,12 @@ O backend armazena fotos de denúncias no Cloudinary, se as três credenciais `C
 
 ## Observações para a apresentação
 
-- O GPS do Chrome depende de permissão do navegador e de contexto seguro (`localhost` ou HTTPS). Se não funcionar, use **Escolher no mapa**.
-- O mapa usa OpenStreetMap e depende de internet para carregar os mosaicos.
-- Os ecopontos de demonstração não são endereços verificados.
-- A confirmação de denúncia depende do backend real. O modo demo é só para apresentar telas e navegação.
-- O código não exige login para denunciar. Não promete anonimato absoluto: hospedagem, redes e servidores podem registrar informações técnicas. Evite fotos com rostos e dados pessoais.
-- O backend inclui o painel básico `/admin` para acompanhar denúncias e autorizar aparelhos, protegido por credencial administrativa. Não é uma central municipal de atendimento.
-- No Render, SQLite pode perder dados após redeploy/restart sem disco persistente. Para produção, migre para armazenamento gerenciado e política de segurança adequada.
-
-## Comandos úteis
+- O backend disponibiliza o painel administrativo `/admin`,
+  protegido por credencial administrativa.
+- O painel permite acompanhar denúncias, visualizar fotografias,
+  atualizar situações e gerenciar autorizações de rastreamento.
+- O SIGA é um protótipo acadêmico independente,
+  não uma central municipal oficial.
 
 ```bash
 flutter doctor -v
