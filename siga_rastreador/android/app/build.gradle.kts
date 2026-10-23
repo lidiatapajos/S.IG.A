@@ -17,7 +17,7 @@ if (releaseRequested && (!signingFile.exists() || listOf("storeFile", "storePass
 
 android {
     namespace = "br.com.siga.rastreador"
-    compileSdk = 35
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
