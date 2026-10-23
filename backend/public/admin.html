@@ -1,1 +1,128 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SIGA | Administração</title><link rel="stylesheet" href="/assets/style.css"><script defer src="/assets/admin.js"></script></head><body class="admin"><div class="shell"><aside class="sidebar"><div class="logo">♻ <b>S.I.G.A</b><small>Central administrativa</small></div><nav><button class="nav active" data-page="dashboard">▦ Visão geral</button><button class="nav" data-page="denuncias">▤ Denúncias</button><button class="nav" data-page="rastreadores">◉ Rastreadores</button></nav><p class="aside-note">Acesso restrito à equipe autorizada.</p></aside><div class="workspace"><header class="top"><div><span class="eyebrow">GESTÃO AMBIENTAL</span><h1 id="page-title">Visão geral</h1><p id="page-description">Acompanhe as operações do SIGA.</p></div><div class="top-right"><span id="connected" class="badge neutral">● Desconectado</span><button id="logout" class="secondary" hidden>Sair</button></div></header><main><section id="login" class="login card"><div class="login-icon">🔐</div><h2>Acesso administrativo</h2><p>Entre com a credencial do servidor para gerenciar as operações.</p><form id="login-form"><label for="token">Credencial administrativa</label><input id="token" type="password" autocomplete="off" required placeholder="Digite sua credencial"><button id="connect" class="primary">Entrar no painel →</button></form><small>A credencial é mantida apenas na memória da página.</small></section><div id="content" hidden><section id="dashboard" class="page"><div class="hero"><div><span class="eyebrow">CENTRAL DE OPERAÇÕES</span><h2>Bem-vinda ao SIGA</h2><p>Um panorama dos registros carregados e das sessões cadastradas.</p></div><button id="refresh-all" class="light">↻ Atualizar</button></div><div class="stats"><article class="card stat"><span>Denúncias carregadas</span><strong id="total">0</strong></article><article class="card stat"><span>Pendentes</span><strong id="pending">0</strong></article><article class="card stat"><span>Resolvidas</span><strong id="resolved">0</strong></article><article class="card stat"><span>Rastreadores cadastrados</span><strong id="trackers">0</strong></article></div><div class="columns"><article class="card"><div class="section-heading"><h3>Denúncias recentes</h3><button class="link" data-go="denuncias">Ver todas →</button></div><div id="recent"></div></article><article class="card"><div class="section-heading"><h3>Rastreamento</h3><button class="link" data-go="rastreadores">Gerenciar →</button></div><div id="summary"></div></article></div></section><section id="denuncias" class="page" hidden><div class="section-heading"><div><h2>Gerenciar denúncias</h2><p>Atualize o andamento das ocorrências.</p></div><button id="refresh-reports" class="secondary">↻ Atualizar</button></div><div class="filters"><input id="search" type="search" aria-label="Buscar denúncias" placeholder="Buscar por ID, categoria ou descrição"><select id="filter" aria-label="Filtrar por status"><option value="">Todos os status</option><option value="pendente">Pendente</option><option value="em_analise">Em análise</option><option value="em_atendimento">Em atendimento</option><option value="resolvida">Resolvida</option><option value="rejeitada">Rejeitada</option></select></div><div id="reports" class="stack"></div><button id="more" class="secondary more" hidden>Carregar mais</button></section><section id="rastreadores" class="page" hidden><div class="section-heading"><div><h2>Gerenciar rastreadores</h2><p>Autorize aparelhos individualmente e revogue acessos.</p></div><button id="refresh-sessions" class="secondary">↻ Atualizar</button></div><div class="columns"><article class="card"><h3>Nova autorização</h3><p>Uma chave exclusiva por aparelho, válida por quatro horas.</p><form id="create-form"><label for="name">Identificação pública do veículo</label><input id="name" minlength="3" maxlength="60" required value="Caminhão da equipe"><button id="create" class="primary">＋ Gerar chave</button></form><small>Nunca envie a credencial administrativa ao motorista.</small></article><article class="card"><div class="section-heading"><h3>Sessões cadastradas</h3><span id="session-count" class="badge good">0</span></div><div id="sessions" class="stack"></div></article></div></section></div></main><footer>SIGA · Protótipo acadêmico independente · Sem vínculo oficial com a Prefeitura de Belém</footer></div></div><div id="toasts" role="status" aria-live="polite"></div><div id="key-modal" class="overlay" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button id="close-modal" class="close" aria-label="Fechar">✕</button><div class="success-icon">✓</div><h2 id="modal-title">Sessão criada!</h2><p>Copie esta chave agora. Ela não será exibida novamente.</p><label for="key">Chave do rastreador</label><textarea id="key" readonly rows="3"></textarea><div class="modal-actions"><button id="copy-key" class="primary">Copiar chave</button><button id="done-modal" class="secondary">Concluir</button></div><small>Use uma chave diferente para cada celular autorizado.</small></div></div></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0755B8">
+  <title>S.I.G.A • Administração</title>
+  <link rel="icon" href="/assets/logo_siga.png" type="image/png">
+  <link rel="stylesheet" href="/assets/admin.css">
+  <script src="/assets/admin.js" defer></script>
+</head>
+<body>
+  <!-- Ícones vetoriais leves, sem bibliotecas externas. -->
+  <svg class="svg-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-report" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 5h12v12H3zM15 10h4l3 4v3h-7M3 17h2m10 0h2"/><circle cx="8" cy="18" r="2"/><circle cx="19" cy="18" r="2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L3 9m0-5v5h5M4 13a8 8 0 0 0 14 5l3-3m0 5v-5h-5"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/></symbol>
+    <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9 2 2-3 3 2 2-3 3-2-2-2 2"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M21 3C9 3 4 7 4 14a7 7 0 0 0 7 7c7 0 11-6 10-18ZM3 21c5-6 9-9 15-12"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+    <symbol id="i-exit" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+  </svg>
+
+  <header class="topbar">
+    <div class="top-inner">
+      <div class="brand">
+        <span class="brand-symbol"><img src="/assets/logo_siga.png" alt="Símbolo SIGA" width="44" height="44"></span>
+        <span class="brand-text"><strong>S.I.G.A</strong><small>Sistema Integrado de Gestão de Resíduos</small></span>
+      </div>
+      <div class="topbar-actions">
+        <span class="env-chip"><svg class="ico"><use href="#i-leaf"></use></svg> BELÉM • PA</span>
+        <span id="connection-badge" class="connection disconnected">Desconectado</span>
+        <button id="logout" class="header-exit" type="button" hidden><svg class="ico"><use href="#i-exit"></use></svg><span>Sair</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+    <section id="login-panel" class="login-layout" aria-labelledby="login-title">
+      <div class="login-intro">
+        <span class="tag"><svg class="ico"><use href="#i-leaf"></use></svg> CUIDANDO DE BELÉM</span>
+        <img class="login-logo" src="/assets/logo_siga.png" alt="Identidade visual do SIGA" width="134" height="134">
+        <h1 id="login-title">Gestão que cuida<br>da nossa cidade.</h1>
+        <p>A mesma experiência do aplicativo SIGA, agora com ferramentas para acompanhar as denúncias e autorizar os veículos.</p>
+        <div class="intro-note">Projeto acadêmico de tecnologia e sustentabilidade • Belém, PA</div>
+      </div>
+      <div class="login-box siga-card">
+        <span class="section-kicker">ACESSO RESTRITO</span>
+        <h2>Área administrativa</h2>
+        <p>Entre com a credencial da equipe para acessar o painel.</p>
+        <form id="login-form">
+          <label for="token">Credencial administrativa</label>
+          <input type="password" id="token" required autocomplete="off" placeholder="Digite sua credencial">
+          <button id="connect" class="btn btn-primary full" type="submit">Entrar no SIGA <svg class="ico"><use href="#i-chevron"></use></svg></button>
+        </form>
+        <div class="safe-note">Sua credencial fica apenas na memória desta página, enquanto a sessão está aberta.</div>
+      </div>
+    </section>
+
+    <div id="app-content" hidden>
+      <nav class="nav-tabs" aria-label="Seções do painel">
+        <button class="tab active" type="button" data-view="overview" aria-current="page"><svg class="ico"><use href="#i-home"></use></svg> Início</button>
+        <button class="tab" type="button" data-view="reports"><svg class="ico"><use href="#i-report"></use></svg> Denúncias</button>
+        <button class="tab" type="button" data-view="tracking"><svg class="ico"><use href="#i-truck"></use></svg> Rastreadores</button>
+      </nav>
+
+      <section id="view-overview" class="view" aria-label="Visão geral">
+        <div class="hero">
+          <div class="hero-content">
+            <span class="hero-eyebrow">OLÁ, EQUIPE SIGA! <span aria-hidden="true">🌿</span></span>
+            <h1>Vamos cuidar de<br>Belém hoje?</h1>
+            <p>Gerencie as ocorrências e acompanhe os aparelhos autorizados em um só lugar.</p>
+            <button id="refresh-all" type="button" class="btn btn-hero"><svg class="ico"><use href="#i-refresh"></use></svg> Atualizar informações</button>
+          </div>
+          <div class="hero-mark" aria-hidden="true"><img src="/assets/logo_siga.png" alt=""></div>
+        </div>
+        <div class="block-heading"><h2>Resumo da operação</h2><p>Informações dos registros carregados nesta sessão.</p></div>
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-icon blue"><svg class="ico"><use href="#i-report"></use></svg></span><div><strong id="stat-total">—</strong><span>Denúncias carregadas</span></div></div>
+          <div class="stat-card"><span class="stat-icon orange"><svg class="ico"><use href="#i-clock"></use></svg></span><div><strong id="stat-pending">—</strong><span>Pendentes</span></div></div>
+          <div class="stat-card"><span class="stat-icon green"><svg class="ico"><use href="#i-check"></use></svg></span><div><strong id="stat-resolved">—</strong><span>Resolvidas</span></div></div>
+          <div class="stat-card"><span class="stat-icon blue"><svg class="ico"><use href="#i-truck"></use></svg></span><div><strong id="stat-trackers">—</strong><span>Autorizações cadastradas</span></div></div>
+        </div>
+        <div class="block-heading"><h2>Acesso rápido</h2><p>Tudo que você precisa em poucos cliques.</p></div>
+        <div class="shortcut-grid">
+          <button class="feature-tile" type="button" data-go="reports"><span class="feature-icon blue"><svg class="ico"><use href="#i-report"></use></svg></span><span class="feature-copy"><strong>Gerenciar denúncias</strong><small>Consulte, filtre e atualize o andamento das ocorrências</small></span><svg class="ico arrow"><use href="#i-chevron"></use></svg></button>
+          <button class="feature-tile" type="button" data-go="tracking"><span class="feature-icon green"><svg class="ico"><use href="#i-truck"></use></svg></span><span class="feature-copy"><strong>Rastreadores</strong><small>Autorize celulares e controle o compartilhamento de localização</small></span><svg class="ico arrow"><use href="#i-chevron"></use></svg></button>
+        </div>
+        <div class="block-heading split"><div><h2>Denúncias recentes</h2><p>Os últimos registros disponíveis.</p></div><button class="plain-link" type="button" data-go="reports">Ver todas <svg class="ico"><use href="#i-chevron"></use></svg></button></div>
+        <div id="recent-reports" class="recent-list"></div>
+        <p class="info-banner"><svg class="ico"><use href="#i-leaf"></use></svg> O SIGA é um protótipo acadêmico. Os dados operacionais não representam uma central municipal oficial.</p>
+      </section>
+
+      <section id="view-reports" class="view" aria-label="Denúncias" hidden>
+        <div class="block-heading split page-heading"><div><span class="section-kicker">ACOMPANHAMENTO</span><h1>Denúncias recebidas</h1><p>Visualize os registros e atualize o andamento de cada ocorrência.</p></div><button id="refresh" class="btn btn-outline" type="button"><svg class="ico"><use href="#i-refresh"></use></svg> Atualizar</button></div>
+        <div class="filter-card siga-card"><div class="search-wrap"><svg class="ico"><use href="#i-search"></use></svg><input id="report-search" type="search" placeholder="Buscar por número, categoria ou descrição" aria-label="Buscar denúncias"></div><select id="report-filter" aria-label="Filtrar denúncias por status"><option value="">Todos os status</option><option value="pendente">Pendentes</option><option value="em_analise">Em análise</option><option value="em_atendimento">Em atendimento</option><option value="resolvida">Resolvidas</option><option value="rejeitada">Rejeitadas</option></select></div>
+        <p id="reports-count" class="list-count"></p><div id="reports" class="reports-grid"></div>
+        <button id="more" class="btn btn-outline load-more" type="button" hidden>Carregar mais denúncias</button>
+      </section>
+
+      <section id="view-tracking" class="view" aria-label="Rastreadores" hidden>
+        <div class="block-heading split page-heading"><div><span class="section-kicker">ACOMPANHAMENTO DOS VEÍCULOS</span><h1>Rastreadores autorizados</h1><p>Cadastre aparelhos e acompanhe a situação de suas sessões.</p></div><button id="refresh-sessions" class="btn btn-outline" type="button"><svg class="ico"><use href="#i-refresh"></use></svg> Atualizar</button></div>
+        <div class="tracking-grid"><div class="siga-card create-card"><div class="round-icon green"><svg class="ico"><use href="#i-key"></use></svg></div><h2>Autorizar aparelho</h2><p>Gere uma chave exclusiva para um novo rastreador. A chave será exibida somente uma vez.</p><form id="create-form"><label for="name">Nome público do veículo</label><input id="name" maxlength="60" minlength="3" required value="Caminhão da equipe"><button id="create" class="btn btn-primary full" type="submit"><svg class="ico"><use href="#i-plus"></use></svg> Gerar chave de acesso</button></form><div class="safe-note">Cada autorização dura 4 horas. Não compartilhe sua credencial administrativa.</div></div>
+        <div class="siga-card"><div class="block-heading split small-heading"><div><h2>Sessões registradas</h2><p>Acompanhe e revogue acessos.</p></div><span id="session-count" class="counter-chip">0</span></div><div id="sessions" class="session-list"></div></div></div>
+        <p class="info-banner"><svg class="ico"><use href="#i-leaf"></use></svg> Um aparelho autorizado só aparece como transmitindo quando envia um sinal recente. Não opere o celular enquanto dirige.</p>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">S.I.G.A • Projeto acadêmico independente • Belém, Pará</footer>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Navegação móvel" hidden>
+    <button type="button" data-view="overview" class="mobile-tab active"><svg class="ico"><use href="#i-home"></use></svg><span>Início</span></button>
+    <button type="button" data-view="reports" class="mobile-tab"><svg class="ico"><use href="#i-report"></use></svg><span>Denúncias</span></button>
+    <button type="button" data-view="tracking" class="mobile-tab"><svg class="ico"><use href="#i-truck"></use></svg><span>Rastreadores</span></button>
+  </nav>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <div id="key-modal" class="modal-overlay" hidden><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button id="close-modal" class="modal-close" aria-label="Fechar" type="button">×</button><div class="round-icon green"><svg class="ico"><use href="#i-check"></use></svg></div><h2 id="modal-title">Chave criada com sucesso!</h2><p>Copie a chave e envie somente ao motorista autorizado. Por segurança, ela não aparecerá novamente.</p><label for="key">Chave de acesso</label><textarea id="key" rows="3" readonly></textarea><button id="copy-key" class="btn btn-primary full" type="button"><svg class="ico"><use href="#i-copy"></use></svg> Copiar chave</button><button id="done-modal" class="btn btn-outline full" type="button">Concluir</button></div></div>
+  <div id="confirm-modal" class="modal-overlay" hidden><div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="confirm-title"><div class="round-icon orange"><svg class="ico"><use href="#i-clock"></use></svg></div><h2 id="confirm-title">Revogar autorização?</h2><p id="confirm-text">Esse aparelho perderá o acesso ao rastreamento.</p><div class="modal-buttons"><button id="cancel-revoke" class="btn btn-outline" type="button">Cancelar</button><button id="confirm-revoke" class="btn btn-danger" type="button">Sim, revogar</button></div></div></div>
+  <div id="photo-modal" class="modal-overlay" hidden><div class="modal-card photo-card" role="dialog" aria-modal="true" aria-labelledby="photo-title"><button id="close-photo" class="modal-close" aria-label="Fechar foto" type="button">×</button><h2 id="photo-title">Foto da denúncia</h2><img id="report-photo" src="" alt="Fotografia anexada à denúncia"><p class="muted">Imagem acessível apenas durante esta sessão administrativa.</p></div></div>
+</body>
+</html>
