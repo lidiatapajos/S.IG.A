@@ -192,6 +192,7 @@ class _ConfirmLocationPageState extends State<ConfirmLocationPage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
+                                  settings: const RouteSettings(name: '/inicio'),
                                   builder: (context) =>
                                       MainScreen(localizacao: localizacao),
                                 ),
