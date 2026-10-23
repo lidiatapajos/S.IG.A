@@ -1,0 +1,42 @@
+
+name: Validar SIGA
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/checks.yml'
+
+jobs:
+  backend:
+    name: Testes da API e Painel
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Instalar dependências
+        working-directory: backend
+        run: npm ci
+
+      - name: Testar API
+        working-directory: backend
+        run: npm test
+
+      - name: Instalar Chromium
+        working-directory: backend
+        run: npx playwright install --with-deps chromium
+
+      - name: Testar painel administrativo
+        working-directory: backend
+        run: npm run test:browser
