@@ -107,21 +107,13 @@ Cloudinary é opcional. Sem as três credenciais, fotos ficam no SQLite privado.
 
 Esta entrega contém código. Não altera automaticamente seu serviço já hospedado.
 
-## 3. Teste com aparelho real
+### 3. Teste do aplicativo Android
 
-1. No computador: abra `https://SUA-API/admin` e entre com `ADMIN_API_TOKEN`.
-2. Informe **Caminhão da equipe 1** e toque em **Gerar sessão de 4 horas**.
-3. Copie a chave gerada para o celular autorizado. Não entregue o token administrativo.
-4. No celular: abra `https://SUA-API/rastreador`, cole a chave, leia o aviso e marque a autorização.
-5. Toque em **Iniciar compartilhamento**, permita GPS e aguarde **Compartilhando**.
-6. Mantenha página visível, tela acesa, internet e GPS ligados. Em locais fechados o GPS pode não atingir a precisão necessária.
-7. Em outro aparelho/computador, no SIGA, abra **Onde está o caminhão?**. A posição aparece normalmente em 5–10 segundos após o primeiro sinal aceito, mais latência da rede.
-8. Caminhe alguns metros em um lugar seguro e confira o marcador. O trajeto não é inventado.
-9. Encerre no transmissor ou painel. O marcador some na próxima consulta.
+Para testar o SIGA Rastreador, consulte
+[siga_rastreador/LEIA_PRIMEIRO.md](siga_rastreador/LEIA_PRIMEIRO.md).
 
-Não rastreia por número de telefone/IMEI, nem funciona oculto/em segundo plano. Ao trocar de aba/aplicativo ou bloquear a tela, a página tenta encerrar a sessão; gere outra chave para recomeçar. Sem conexão para avisar o servidor, a posição envelhece e sai do mapa em até 2 minutos. GPS pode ser simulado pelo usuário do aparelho; não há autenticação de hardware.
-
-A localização é pública: use aparelho da equipe, com consentimento, sem expor residência/rotina. Não opere o celular ao dirigir. Não há vínculo com a prefeitura, histórico de trajetos nem previsão de chegada. Proxies/hospedagem ainda podem guardar logs técnicos.
+O aplicativo utiliza uma implementação diferente do transmissor web,
+com requisitos próprios de permissões e execução no Android.
 
 ## 4. Flutter e APK
 
