@@ -28,8 +28,8 @@
 - Modo demonstrativo explícito para apresentação sem API
 - Acompanhamento da localização de veículos autorizados no mapa do cidadão
 - Aplicativo SIGA Rastreador para transmissão de localização por motoristas autorizados
-- Painel administrativo web para gerenciamento de denúncias, ecopontos e sessões de rastreamento
-- Integração das interfaces por meio de uma API Node.js
+- Painel administrativo web para gerenciamento de denúncias e sessões de rastreamento
+- API administrativa para cadastro, edição e exclusão de ecopontos
 
 ### Limitações
 
