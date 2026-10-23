@@ -14,6 +14,49 @@
 - Android: `br.com.siga.app`, alvos Java/Kotlin 17, menor uso de RAM no Gradle e assinatura própria obrigatória para release.
 - Fotos orientadas corretamente no Flutter; processamento em isolate no Android/iOS. No navegador, `compute` não cria isolate separado. Formulário bloqueia mudanças durante envio.
 
+  ## Arquitetura Atual do Rastreamento
+
+O SIGA possui um aplicativo independente para transmissão da localização dos veículos, denominado **SIGA Rastreador**.
+
+Essa interface complementa o aplicativo principal do cidadão e o painel administrativo web.
+
+### Aplicativo SIGA Rastreador
+
+O aplicativo do motorista está localizado no diretório `siga_rastreador/` e foi desenvolvido utilizando Flutter.
+
+Sua finalidade é permitir o compartilhamento autorizado da localização de veículos durante as operações de coleta.
+
+O fluxo de funcionamento é composto pelas seguintes etapas:
+
+1. O administrador autoriza uma sessão de rastreamento.
+2. O motorista utiliza a credencial de rastreamento correspondente.
+3. O aplicativo do motorista obtém a localização do dispositivo, mediante permissão.
+4. As informações de localização são transmitidas à API.
+5. O aplicativo do cidadão consulta os dados disponibilizados pelo backend.
+6. O administrador pode encerrar ou revogar as sessões autorizadas.
+
+### Transmissor Web
+
+O projeto também contém uma implementação de rastreamento por navegador, acessível pela rota `/rastreador`.
+
+Essa implementação utiliza os recursos de geolocalização do navegador e possui limitações específicas, incluindo a necessidade de manter a página ativa durante a transmissão.
+
+As orientações relacionadas ao transmissor web não devem ser confundidas com o funcionamento do aplicativo Flutter independente.
+
+### Painel Administrativo
+
+O painel administrativo, disponível pela rota `/admin`, permite gerenciar sessões autorizadas de rastreamento e acompanhar informações operacionais do sistema.
+
+O acesso exige credenciais administrativas, que não devem ser incluídas no repositório nem distribuídas aos avaliadores.
+
+### Demonstração para Avaliação Acadêmica
+
+Na Mostra de Projetos — Inovação e Tecnologia, as interfaces do motorista e do administrador serão apresentadas por meio de demonstrações gravadas.
+
+O acesso operacional ao ambiente hospedado permanecerá restrito.
+
+Essa decisão busca preservar a segurança das operações administrativas e impedir o uso não autorizado das funcionalidades de rastreamento.
+
 ## 1. Backend local
 
 Instale Node.js 24. Na pasta `backend`:
