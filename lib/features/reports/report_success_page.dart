@@ -42,7 +42,7 @@ class ReportSuccessPage extends StatelessWidget {
               builder: (_) => TrackReportPage(initialProtocol: protocol))),
             child: const Text('Acompanhar denúncia'))),
           const SizedBox(height: 10),
-          TextButton(onPressed: () => Navigator.popUntil(context, (route) => route.isFirst), child: const Text('Voltar ao início')),
+          TextButton(onPressed: () {Navigator.of(context).popUntil((route) => route.settings.name == '/inicio' || route.isFirst,);},child: const Text('Voltar ao início'),),
         ]),
       ),
     )),
